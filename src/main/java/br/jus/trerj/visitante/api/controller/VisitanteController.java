@@ -41,6 +41,43 @@ public class VisitanteController implements Serializable{
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
 		}
 	}
+
+	@RequestMapping(value = "/obterVisitante/}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> obterVisitante() {
+		Visitante visita = new Visitante();
+		try {
+				HttpHeaders headers = new HttpHeaders();
+		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
+		    	return response;
+	
+		} catch (Exception e) {
+			this.logger.error("Erro ao obter o visitante", e);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
+		}
+	}
+
+	@RequestMapping(value = "/testarVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Visitante> buscarEvento() {
+		
+		Visitante visita = this.service.buscarVisitante();
+		
+		return new ResponseEntity<Visitante>(visita, HttpStatus.OK);
+	}
+	
+
+	@RequestMapping(value = "/testarAcharVisitante/}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> acharVisitante() {
+		Visitante visita = this.service.buscarVisitante();
+		try {
+				HttpHeaders headers = new HttpHeaders();
+		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
+		    	return response;
+	
+		} catch (Exception e) {
+			this.logger.error("Erro ao obter o visitante", e);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
+		}
+	}
 	
 	public void listar() {
 		
