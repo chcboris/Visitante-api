@@ -1,6 +1,7 @@
 package br.jus.trerj.visitante.domain.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class VisitanteService implements Serializable{
 		visitante.setRamal("8243");
 		visitante.setTelefone("(21) 98367-8785");
 		
-		return null;
+		return visitante;
 	}
 	
 	public Visitante buscarVisitante(Long id) {
@@ -50,4 +51,38 @@ public class VisitanteService implements Serializable{
 		return null;
 	}	
 	
+	public List<Visitante> listarTeste() {
+		
+		Visitante visitante1 = new Visitante();
+		
+		visitante1.setContato("Christian");
+		visitante1.setDataAcesso(new Date());
+		visitante1.setDestino("SEDSIS");
+		visitante1.setDocumento("RG");
+		visitante1.setEmpresa("TRE-RJ");
+		visitante1.setId(1L);
+		visitante1.setNome("Christian Moreira");
+		visitante1.setNumeroDoc("100");
+		visitante1.setRamal("8243");
+		visitante1.setTelefone("(21) 98367-8785");
+		
+		Visitante visitante2 = new Visitante();		
+		visitante2.setContato("Christian 2");
+		visitante2.setDataAcesso(new Date());
+		visitante2.setDestino("SEDSIS");
+		visitante2.setDocumento("RG");
+		visitante2.setEmpresa("TRE-RJ");
+		visitante2.setId(2L);
+		visitante2.setNome("Christian Moreira");
+		visitante2.setNumeroDoc("100");
+		visitante2.setRamal("8243");
+		visitante2.setTelefone("(21) 98367-8785");
+		
+		ArrayList<Visitante> lst = new ArrayList<Visitante>(); 
+		
+		lst.add(visitante1);
+		lst.add(visitante2);
+		
+		return lst;
+	}
 }

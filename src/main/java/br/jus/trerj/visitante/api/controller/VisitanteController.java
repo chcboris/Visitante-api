@@ -1,6 +1,7 @@
 package br.jus.trerj.visitante.api.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,7 @@ public class VisitanteController implements Serializable{
 		}
 	}
 
-	@RequestMapping(value = "/obterVisitante/}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/obterVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> obterVisitante() {
 		Visitante visita = new Visitante();
 		try {
@@ -65,7 +66,7 @@ public class VisitanteController implements Serializable{
 	}
 	
 
-	@RequestMapping(value = "/testarAcharVisitante/}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/testarAcharVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> acharVisitante() {
 		Visitante visita = this.service.buscarVisitante();
 		try {
@@ -99,6 +100,21 @@ public class VisitanteController implements Serializable{
 		
 	}
 	
+	@RequestMapping(value = "/listarTeste", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> listarDiplomaPorFiltro() {
+		
+		try {
+			List<Visitante> lista = this.service.listarTeste();
+						
+			return ResponseEntity.ok().body(lista);
+			
+		} catch (Exception e) {
+			this.logger.error("ERRO NO SERVIÇO: ", e.getMessage());
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 //	@RequestMapping(value = "/listarDiplomasPorFiltro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 //	public ResponseEntity<?> listarDiplomaPorFiltro(@RequestBody FiltroDiplomaDTO filtro) {
 //		
@@ -118,4 +134,7 @@ public class VisitanteController implements Serializable{
 //		}
 //
 //	}
+	
+//	localhost:8080/visitante-api/acessoVisitante/testarVisitante	
+	
 }
