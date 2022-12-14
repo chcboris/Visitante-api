@@ -29,48 +29,20 @@ public class VisitanteController implements Serializable{
 	private VisitanteService service;
 	
 	private Logger logger = LoggerFactory.getLogger(Visitante.class);
-	
-	@RequestMapping(value = "/obterVisitante/{idVisitante}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> obterVisitante(@PathVariable("idVisitante") String idVisitante) {
-		Visitante visita = new Visitante();
-		try {
-				HttpHeaders headers = new HttpHeaders();
-		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
-		    	return response;
-	
-		} catch (Exception e) {
-			this.logger.error("Erro ao obter o visitante", e);
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
-		}
-	}
 
-	@RequestMapping(value = "/obterVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> obterVisitante() {
-		Visitante visita = new Visitante();
-		try {
-				HttpHeaders headers = new HttpHeaders();
-		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
-		    	return response;
-	
-		} catch (Exception e) {
-			this.logger.error("Erro ao obter o visitante", e);
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
-		}
-	}
-
-	@RequestMapping(value = "/testarVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/testeConsultarVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Visitante> buscarEvento() {
 		
 		Visitante visita = this.service.buscarVisitante();
 		
 		return new ResponseEntity<Visitante>(visita, HttpStatus.OK);
-	}
+	}	
 	
-
-	@RequestMapping(value = "/testarAcharVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> acharVisitante() {
-		Visitante visita = this.service.buscarVisitante();
+	@RequestMapping(value = "/testeObterVisitante/{idVisitante}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> testarObterVisitante(@PathVariable("idVisitante") int idVisitante) {
+		Visitante visita = new Visitante();
 		try {
+				visita = this.service.acharVisitanteTeste(idVisitante);
 				HttpHeaders headers = new HttpHeaders();
 		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
 		    	return response;
@@ -81,28 +53,8 @@ public class VisitanteController implements Serializable{
 		}
 	}
 	
-	public void listar() {
-		
-	}
-	
-	public void cadastrar() {
-		
-	}
-	
-	public void excluir() {
-		
-	}
-	
-	public void alterar() {
-		
-	}
-
-	public void salvar() {
-		
-	}
-	
-	@RequestMapping(value = "/listarTeste", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> listarDiplomaPorFiltro() {
+	@RequestMapping(value = "/testeListar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> listagem() {
 		
 		try {
 			List<Visitante> lista = this.service.listarTeste();
@@ -113,13 +65,11 @@ public class VisitanteController implements Serializable{
 			this.logger.error("ERRO NO SERVIÇO: ", e.getMessage());
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-	}
+	}	
 	
-	
-	@RequestMapping(value = "/testarHelloSpringBoot", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> hello() {
-			
-		return new ResponseEntity<String>("Olá Spring Boot", HttpStatus.OK);
+	@GetMapping("/numero")
+	public Integer numero() {		
+		return 1;
 	}
 
 	@GetMapping("/texto")
@@ -127,12 +77,87 @@ public class VisitanteController implements Serializable{
 			
 		return new ResponseEntity<String>("Olá Spring Boot", HttpStatus.OK);
 	}
+
+}
+	// -------------------------------------------------------------------------------------------------------
 	
-	@GetMapping("/numero")
-	public Integer numero() {		
-		return 1;
-	}
-	
+//	@RequestMapping(value = "/obterVisitante/{idVisitante}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<?> obterVisitante(@PathVariable("idVisitante") String idVisitante) {
+//		Visitante visita = new Visitante();
+//		try {
+//				HttpHeaders headers = new HttpHeaders();
+//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
+//		    	return response;
+//	
+//		} catch (Exception e) {
+//			this.logger.error("Erro ao obter o visitante", e);
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
+//		}
+//	}
+//
+//	@RequestMapping(value = "/obterVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<?> obterVisitante() {
+//		Visitante visita = new Visitante();
+//		try {
+//				HttpHeaders headers = new HttpHeaders();
+//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
+//		    	return response;
+//	
+//		} catch (Exception e) {
+//			this.logger.error("Erro ao obter o visitante", e);
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
+//		}
+//	}
+//
+//	@RequestMapping(value = "/testarAcharVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<?> acharVisitante() {
+//		Visitante visita = this.service.buscarVisitante();
+//		try {
+//				HttpHeaders headers = new HttpHeaders();
+//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
+//		    	return response;
+//	
+//		} catch (Exception e) {
+//			this.logger.error("Erro ao obter o visitante", e);
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
+//		}
+//	}
+//	
+//	public void listar() {
+//		
+//	}
+//	
+//	public void cadastrar() {
+//		
+//	}
+//	
+//	public void excluir() {
+//		
+//	}
+//	
+//	public void alterar() {
+//		
+//	}
+//
+//	public void salvar() {
+//		
+//	}
+//	
+//
+//	
+//	
+//	@RequestMapping(value = "/testarHelloSpringBoot", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<String> hello() {
+//			
+//		return new ResponseEntity<String>("Olá Spring Boot", HttpStatus.OK);
+//	}
+//
+//
+//	
+//
+//
+//
+//	
 //	@RequestMapping(value = "/listarDiplomasPorFiltro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 //	public ResponseEntity<?> listarDiplomaPorFiltro(@RequestBody FiltroDiplomaDTO filtro) {
 //		
@@ -155,4 +180,8 @@ public class VisitanteController implements Serializable{
 	
 //	localhost:8080/visitante-api/acessoVisitante/testarVisitante	
 	
-}
+	
+
+	
+	
+
