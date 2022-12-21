@@ -30,6 +30,10 @@ public class VisitanteController implements Serializable{
 	
 	private Logger logger = LoggerFactory.getLogger(Visitante.class);
 
+	
+	// ------------------------------------- Consultas ---------------------------
+	
+	// retorna um objeto
 	@RequestMapping(value = "/testeConsultarVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Visitante> buscarEvento() {
 		
@@ -38,6 +42,7 @@ public class VisitanteController implements Serializable{
 		return new ResponseEntity<Visitante>(visita, HttpStatus.OK);
 	}	
 	
+	// retorna um objeto a partir de um id
 	@RequestMapping(value = "/testeObterVisitante/{idVisitante}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> testarObterVisitante(@PathVariable("idVisitante") int idVisitante) {
 		Visitante visita = new Visitante();
@@ -53,6 +58,7 @@ public class VisitanteController implements Serializable{
 		}
 	}
 	
+	// retorna uma listagem
 	@RequestMapping(value = "/testeListar", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> listagem() {
 		
@@ -67,6 +73,7 @@ public class VisitanteController implements Serializable{
 		}
 	}	
 	
+	// retorna um tipo primitivo
 	@GetMapping("/numero")
 	public Integer numero() {		
 		return 1;
@@ -79,104 +86,6 @@ public class VisitanteController implements Serializable{
 	}
 
 }
-	// -------------------------------------------------------------------------------------------------------
-	
-//	@RequestMapping(value = "/obterVisitante/{idVisitante}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<?> obterVisitante(@PathVariable("idVisitante") String idVisitante) {
-//		Visitante visita = new Visitante();
-//		try {
-//				HttpHeaders headers = new HttpHeaders();
-//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
-//		    	return response;
-//	
-//		} catch (Exception e) {
-//			this.logger.error("Erro ao obter o visitante", e);
-//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
-//		}
-//	}
-//
-//	@RequestMapping(value = "/obterVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<?> obterVisitante() {
-//		Visitante visita = new Visitante();
-//		try {
-//				HttpHeaders headers = new HttpHeaders();
-//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
-//		    	return response;
-//	
-//		} catch (Exception e) {
-//			this.logger.error("Erro ao obter o visitante", e);
-//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
-//		}
-//	}
-//
-//	@RequestMapping(value = "/testarAcharVisitante", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<?> acharVisitante() {
-//		Visitante visita = this.service.buscarVisitante();
-//		try {
-//				HttpHeaders headers = new HttpHeaders();
-//		    	ResponseEntity<Visitante> response = new ResponseEntity<>(visita, headers, HttpStatus.OK);
-//		    	return response;
-//	
-//		} catch (Exception e) {
-//			this.logger.error("Erro ao obter o visitante", e);
-//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);	
-//		}
-//	}
-//	
-//	public void listar() {
-//		
-//	}
-//	
-//	public void cadastrar() {
-//		
-//	}
-//	
-//	public void excluir() {
-//		
-//	}
-//	
-//	public void alterar() {
-//		
-//	}
-//
-//	public void salvar() {
-//		
-//	}
-//	
-//
-//	
-//	
-//	@RequestMapping(value = "/testarHelloSpringBoot", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<String> hello() {
-//			
-//		return new ResponseEntity<String>("Olá Spring Boot", HttpStatus.OK);
-//	}
-//
-//
-//	
-//
-//
-//
-//	
-//	@RequestMapping(value = "/listarDiplomasPorFiltro", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<?> listarDiplomaPorFiltro(@RequestBody FiltroDiplomaDTO filtro) {
-//		
-//		try {
-//			List<Visitante> listaDiplomas = this.service.listarDiplomaPorFiltro(filtro);
-//			
-//			List<ImpressaoDiplomaDTO> listaDTO = new ArrayList<>();
-//			for (ImpressaoDiploma impressaoDiploma : listaDiplomas) {
-//				listaDTO.add(impressaoDiploma.converteParaDTO());
-//			}
-//			
-//			return ResponseEntity.ok().body(listaDTO);
-//			
-//		} catch (Exception e) {
-//			this.logger.error("ERRO NO SERVIÇO: ", e.getMessage());
-//			return new ResponseEntity<StringDTO>(new StringDTO("ERRO NO SERVIÇO"), HttpStatus.BAD_REQUEST);
-//		}
-//
-//	}
 	
 //	localhost:8080/visitante-api/acessoVisitante/testarVisitante	
 	

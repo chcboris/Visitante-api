@@ -14,6 +14,8 @@ public class VisitanteService implements Serializable{
 
 	private static final long serialVersionUID = -8508235042859017745L;
 
+	
+	/* ------------------------------------- Consultas --------------------------- */
 	public Visitante buscarVisitante() {
 		Visitante visitante = new Visitante();
 		
@@ -30,26 +32,6 @@ public class VisitanteService implements Serializable{
 		
 		return visitante;
 	}
-	
-	public Visitante buscarVisitante(Long id) {
-		return null;
-	}
-
-	public List<Visitante> listar() {
-		return null;
-	}
-
-	public Visitante adicionarVisitante(Long id) {
-		return null;
-	}
-
-	public Visitante removerVisitante(Long id) {
-		return null;
-	}
-
-	public Visitante alterarVisitante(Long id) {
-		return null;
-	}	
 	
 	public List<Visitante> listarTeste() {
 		
@@ -102,10 +84,6 @@ public class VisitanteService implements Serializable{
 	public Visitante acharVisitanteTeste(int ind) {
 		
 		Visitante visitante1 = new Visitante();
-		
-//		int ind;
-//		
-//		ind = Integer.valueOf(id);
 		
 		visitante1.setContato("Christian");
 		visitante1.setDataAcesso(new Date());
